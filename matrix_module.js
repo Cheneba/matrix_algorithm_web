@@ -19,6 +19,7 @@ function matrix(item, row, column ){
             return newItem
         }
     }
+    
     this.value = this.convert(this.item)
     this.isSquare = () => { if(this.row === this.column) return true}
     this.isSingular = () => { if(this.determinant==0) return true}
