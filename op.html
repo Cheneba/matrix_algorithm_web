@@ -44,11 +44,19 @@
                     <div class="request">
                         <div>
                             <span>#rows</span>
+<<<<<<< HEAD
                             <input id="create-row" type="number" value="3" oninput="formOfMatrix()">
                         </div>
                         <div>
                             <span>#cols</span>
                             <input id="create-column" type="number" value="3" oninput="formOfMatrix()">
+=======
+                            <input id="create-row" type="number" value="3" oninput="matrix_structure(1)">
+                        </div>
+                        <div>
+                            <span>#cols</span>
+                            <input id="create-column" type="number" value="3" oninput="matrix_structure(2)">
+>>>>>>> 905a055e9e4d28ed4f92923bedd394dcf1e190d1
                         </div>
                     </div>
                     <div class="prototype_matrix">
@@ -63,8 +71,13 @@
                         <input type="number" class="input" value="5">
                     </div>
                     <div class="submit">
+<<<<<<< HEAD
                         <button class="btn" name="clear_matrix"style='background: orange'>Remove</button>
                         <button class="btn" onclick="createMatrix()">Create</button>
+=======
+                        <button class="btn" name="clear_matrix"style='background: orange' onclick="createMatrix(false)">Remove</button>
+                        <button class="btn" onclick="createMatrix(true)">Create</button>
+>>>>>>> 905a055e9e4d28ed4f92923bedd394dcf1e190d1
                     </div>
                 </div>
 
@@ -89,7 +102,20 @@
                                 <li class="sign"></li>
                             </ul>
                             <ul class="matrix" id="solve_2">
+<<<<<<< HEAD
                                 <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li class="field_box" onclick="linkMatrix(1)"></li>
+=======
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li class="field_box" onclick="linkMatrix(1)"></li>
+>>>>>>> 905a055e9e4d28ed4f92923bedd394dcf1e190d1
                             </ul>
                        </div>
 
@@ -98,22 +124,154 @@
                                 <li class="operate"></li>
                             </ul>
                             <ul style="margin-left: 75px;" class="matrix" id="solve_3">
+<<<<<<< HEAD
                                 <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li class="field_box" onclick="linkMatrix(2)"></li>
+=======
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li class="field_box" onclick="linkMatrix(2)"></li>
+>>>>>>> 905a055e9e4d28ed4f92923bedd394dcf1e190d1
                             </ul>
                         </div>
  
                     </div>
+<<<<<<< HEAD
                     <p style="transform: translateY(-20px);" class="sign">=</p>
                     <div class="solution">
                         
                         <ul style="margin: auto; transform: translateY(20px);" class="matrix" id="result">
                             <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li class="field_box_result" onclick=""></li>
+=======
+                    <p class="equal_sign">=</p>
+                    <div class="solution">
+                        
+                        <ul style="margin: auto; transform: translateY(20px);" class="matrix" id="result">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="field_box_result" onclick="addStyle(0)"></li>
+>>>>>>> 905a055e9e4d28ed4f92923bedd394dcf1e190d1
                         </ul>
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <div class="container"></div>
 
+=======
+                <div class="container">
+                        
+                        <ul class="matrix holder" id="matrix_1">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(0)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_2">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                           <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(1)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_3">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                           <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(2)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_4">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(3)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_5">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(4)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_6">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(5)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_7">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(6)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_8">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(7)"></li>
+                        </ul>
+                    </div>
+>>>>>>> 905a055e9e4d28ed4f92923bedd394dcf1e190d1
             </div>
 
         </div>
