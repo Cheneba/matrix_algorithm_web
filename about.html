@@ -8,55 +8,47 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="top-nav">
-            <div class="left">
-                <img src="images/profile.png" alt="profile">
+        <div class="top_nav">
+            <div class="profile">
+                <span>PROFILE</span>
             </div>
-            <div class="top_nav_home">
-                <a href="index.html" class="index">Home</a>
+            
+            <div class="top_nav_home" onclick="launch('index.html')">
+                <p class="index">Home</p>
             </div>
-            <div class="top_nav_services">
-                <a href="op.html" class="index">Services</a>
+            <div class="top_nav_services" onclick="launch('op.html')">
+                <p class="index">Services</p>
             </div>
-            <div class="top_nav_about">
-                <a href="about.html" class="index">About</a>
+            <div class="top_nav_about current" onclick="reLoad()">
+                <p class="index">About</p>
             </div>
 
         </div>
 
-        <div class="logo"></div>
-        
-        <div class="left_nav">
-            <div class="line"></div>
+        <div class="body">
+            <div class="body_nav">
+                <ul>
+                    <li onclick="launch('index.html')"><br>HOME</li>
+                    <li onclick="launch('op.html')"><br>SERVICES</li>
+                    <li id="C1"><br>ABOUT</li>
+                </ul>
+            </div>
 
-            <div class="left_nav_home">
-                <a href="index.html" class="index">Home</a>
-            </div>
-            <div class="left_nav_services">
-                <a href="op.html" class="index">Services</a>
-            </div>
-            <div class="left_nav_about">
-                <a href="about.html" class="index">About</a>
-            </div>
-        </div>
-
-        <div class="page-about">
-            <div class="User"></div>
             <div class="about_page">
-                <p>This free website is here to solve that problem 
-                   for both academic purposes or programming issues</p>
-                <p>This is a web site build on the fact that it is 
-                   computationally complicated to solve matrix problems</p>
-                <p>Created by Cheneba M. Metuge,</p>
-                <p>You can get to my github account to view the orriginal code
-                    using: <a href=""></a> </p>
-                <p>Contact me through the following: <br>
-                    Tel: +273 673 89 38 17 <br>
-                    Email: chenebametugfe@gmail.com</p>
+
             </div>
         </div>
+        
 
-        <!-- Continue here-->
+        
+        <!-- <footer class="footer">
+            <marquee style="color: orangered">
+                Please when done using the site, acknowledge this site on the about section
+                cheneba@gmail.com All rights reserved
+                Created by Cheneba M. Metuge
+            </marquee>
+        </footer> -->
 
     </body>
-</html>       
+    <script src="code.js"></script>
+</html>

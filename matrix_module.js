@@ -1,40 +1,54 @@
 // MATRIX MODULE
 
-function matrix(item, row, column ){
-    this.item = item
-    this.row = row
-    this.column = column
-    this.convert = function(data){
-        let newItem=[], xItem = [];
-        if(data.length=== this.row) return this.item
-        else{
+class Matrix{
+    // Converts 2D matrix to 1D and vice versa
+    update(data=[], use=1){
+            let newItem=[], xItem = [];
+        if(use===0){
             for(let x=0, z=0;x<this.row;x++){
                 for(let y=0;y<this.column;y++){
-                    xItem[y] = data[z]
-                    z++;
+                    newItem.push(data[x][y])
                 }
-                newItem.push(xItem)
-                xItem = []
             }
             return newItem
         }
+        else if(use===1){
+            if(data.length=== this.column) return [data]
+            else{
+                for(let x=0, z=0;x<this.row;x++){
+                    for(let y=0;y<this.column;y++){
+                        xItem[y] = data[z]
+                        z++;
+                    }
+                    newItem.push(xItem)
+                    xItem = []
+                }
+                return newItem
+            }
+        }
     }
     
-    this.value = this.convert(this.item)
-    this.isSquare = () => { if(this.row === this.column) return true}
-    this.isSingular = () => { if(this.determinant==0) return true}
-    this.getIndex = function(_row, _column){
-        return this.item[_row][_column]
+    constructor(item, row, column){
+        this.item = item
+        this.row = row
+        this.column = column
+        this.value = this.update(this.item, 1)
     }
-    this.coFactor = function(_row, _column){
+    
+    isSquare () { if(this.row === this.column) return true}
+    isSingular(){ if(this.determinant==0) return true}
+    getItem(_row, _column){
+        return this.value[_row][_column]
+    }
+    // RETURNS A MATRIX
+    transpose (data = this.value, _row = this.row, _column = this.column){
         let newMatrix=[], xItem=[], flag = false
         if(this.isSquare()){
-            for(let x=0;x<this.row;x++){
-                for(let y=0, z=0;y<this.column;y++){
-                    if(_row===x) break
-                    else if(_column===y) continue
+            for(let x=0;x<_row;x++){
+                for(let y=0, z=0;y<_column;y++){
+                    if(_column===y) break
                     else{
-                        xItem[z] = this.value[x][y]
+                        xItem[z] = data[y][x]
                         z++
                         flag = true
                     }
@@ -46,19 +60,45 @@ function matrix(item, row, column ){
                 }
             }
         }
-        if(newMatrix.length==1) return newMatrix[0]
-        return newMatrix[0][0]*newMatrix[1][1]-newMatrix[0][1]*newMatrix[1][0]
+        return new Matrix(this.update(newMatrix, 0), this.row,  this.column)
     }
-    this.determinant = function(){
-        let deter=0
-        if(this.isSquare() && this.row>=3){
+    magnitude(data){
+        return data[0][0]*data[1][1] - data[0][1]*data[1][0]
+    }
+    coFactor(x, y){
+        let newMatrix=[], xItem=[]
+        let accept = false
+        for(let index=0; index<this.row; index++){
+            for(let index_2=0, z=0; index_2<this.row; index_2++){
+                if(index===x)break
+                else if(index_2===y) continue
+                else {
+                    xItem[z] = this.value[index][index_2]
+                    z++
+                    accept = true
+                }
+            }
+            if(accept){
+                newMatrix.push(xItem)
+                accept=false
+            }
+            xItem = []
+        }
+        let result = this.magnitude(newMatrix)
+        return result
+    }
+    determinant(){
+        let D=0
+        if(this.isSquare() && this.row!==0){
             for(let y=0;y<this.column;y++){
-                deter += this.coFactor(0, y)
+                D += this.coFactor(0, y)
             }
         }
-        return deter
+        return D
     }
-    this.wacha = function(){
+    // Matrix of cofactors
+    // RETURNS A MATRIX
+    moc(){
         let newMatrix=[], xItem=[]
         if(this.isSquare()){
             for(let x=0;x<this.row;x++){
@@ -68,29 +108,19 @@ function matrix(item, row, column ){
                 newMatrix.push(xItem)
                 xItem=[]
             }
-            return new matrix(newMatrix, this.row, this.column)
+            return new Matrix(this.update(newMatrix, 0), this.row,  this.column)
         }
-        else return "Error as a non square matrix was inputed!"
+        else console.log("Error as a non square matrix was inputed!")
     }
-    this.transpose = function(){
-        let newMatrix=[], xItem=[]
-        for(let x=0;x<this.column;x++){
-            for(let y=0;y<this.row;y++){
-                xItem[y] = this.value[y][x]                
-            }
-            newMatrix.push(xItem)
-            xItem=[]
-        }
-        return new matrix(newMatrix, this.column, this.row)
-    }
-    this.adjoint = function(){
+    
+    adjoint(){
         if(this.isSquare){
-            let newMatrix = this.wacha().transpose()
+            let newMatrix = this.moc().transpose()
             return newMatrix
         }
         else return NaN
     }
-    this.inverse = function(){
+    inverse(){
         if(this.isSquare && this.isSingular){
             let Matrix = this.adjoint(), deter = this.determinant()
             let inverse=[], xItem = []
@@ -102,47 +132,50 @@ function matrix(item, row, column ){
                 inverse.push(xItem)
                 xItem = []
             }
-            return new matrix(inverse, this.row, this.column)
+            return new Matrix(this.update(inverse, 0), this.row,  this.column)
         }
     }
-    this.addMatrix = function(sample){ 
+    addMatrix(sample){ 
         if (this.row === sample.row && this.column === sample.column){
             let newMatrix = [], xItem = []
+            if(sample.item===[]) return new Matrix(undefined, undefined, undefined)
             for(let x=0;x<this.row;x++){
                 for(let y=0;y<this.column;y++){
-                    xItem[y] = this.value[x][y]+sample.value[x][y]
+                    xItem[y] = Number(this.value[x][y])+Number(sample.value[x][y])
                 }
-                console.log(xItem)
+                // console.log(xItem)
                 newMatrix.push(xItem)
                 xItem = []
             }
-            console.log(newMatrix)
-            return new matrix(newMatrix, this.row, this.column)
+            // console.log(newMatrix)
+            return new Matrix(this.update(newMatrix, 0), this.row, this.column)
         }
         else NaN
     }
-    this.subMatrix = function(sample){
+    subMatrix(sample){
         if (this.row === sample.row && this.column === sample.column){
             let newMatrix = [], xItem = []
+            if(sample.item===[]) return new Matrix([], 0, 0)
             for(let x=0;x<this.row;x++){
                 for(let y=0;y<this.column;y++){
-                    xItem[y] = this.value[x][y]-sample.value[x][y]
+                    xItem[y] = Number(this.value[x][y])-Number(sample.value[x][y])
                 }
-                console.log(xItem)
+                // console.log(xItem)
                 newMatrix.push(xItem)
                 xItem = []
             }
-            console.log(newMatrix)
-            return new matrix(newMatrix, this.row, this.column)
+            // console.log(newMatrix)
+            return new Matrix(this.update(newMatrix, 0), this.row, this.column)
         }
-        else NaN
     }
-    this.mulMatrix = function(sample){
+    mulMatrix(sample){
         if (this.column === sample.row){
 
         }
     }
-}
 
-const matrix1 = new matrix([1, 2, 3, 4, 5, 6, 7, 8, 9], 3, 3)
-const matrix2 = new matrix([6, 2, 3, 3, 8, 11, 7, 8, -1], 3, 3)
+    
+}
+// let test = new Matrix([1, 6, 3, 2, -1, -5, 2, 3, 3], 3, 3)
+// let test_2 = test.moc()
+
