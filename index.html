@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewprot" content="width=device-width, initial-scale=1.0">
+        <title>Solve Matrix Equations Easily</title>
+        <link rel="icon" href="">
+        <link rel="stylesheet" href="style.css">
+        
+    </head>
+    <body>
+        <div class="top_nav">
+            <div class="profile">
+                <span>PROFILE</span>
+            </div>
+            
+            <div class="top_nav_home current"  onclick="reLoad()">
+                <p class="index">Home</p>
+            </div>
+            <div class="top_nav_services" onclick="launch('op.html')">
+                <p class="index">Services</p>
+            </div>
+            <div class="top_nav_about" onclick="launch('about.html')">
+                <p class="index">About</p>
+            </div>
+
+        </div>
+
+        <div class="body">
+            <div class="body_nav">
+                <ul>
+                    <li id="C1"><br>HOME</li>
+                    <li onclick="launch('op.html')"><br>SERVICES</li>
+                    <li onclick="launch('about.html')"><br>ABOUT</li>
+                </ul>
+            </div>
+        
+            <div class="page_home">
+                <div class="div">
+                    <div class="head">
+                        <span id="reg" onclick="change('r')">REGISTER</span>
+                        <span id="log" onclick="change('l')">LOGIN</span>
+                    </div>
+                    <div class="signup">
+                        <form action="POST">
+                            <input type="text" name="User" required>
+                            <input type="text" name="passcode" required>
+                            <div class="button">
+                                <button type="submit" id="submit">Submit</button>
+                                <button type="button" id="start">Start!</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="login">
+                        <form action="POST">
+                            <input type="text" name="User" required>
+                            <input type="text" name="passcode" required>
+                            <button type="submit" id="login">LOGIN</button>
+                        </form>
+                    </div>
+                </div>
+                
+
+                <div class="comment_home">
+                    <p>There is always a way outin every situation</p>
+                    <p>Try us and get satisfied</p>
+                </div>
+
+        </div>
+        
+        <!-- <footer class="footer">
+            <marquee style="color: orangered">
+                Please when done using the site, acknowledge this site on the about section
+                cheneba@gmail.com All rights reserved
+                Created by Cheneba M. Metuge
+            </marquee>
+        </footer> -->
+
+    </body>
+    <script src="code.js"></script>
+</html>

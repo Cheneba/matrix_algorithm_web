@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewprot" content="width=device-width, initial-scale=1.0">
+        <title>Solve Matrix Equations Easily</title>
+        <link rel="icon" href="">
+        <link rel="stylesheet" href="style_1.css">
+    </head>
+    <body>
+        <div class="top_nav">
+            <div class="profile">
+                <span>PROFILE</span>
+            </div>
+            
+            <div class="top_nav_home" onclick="launch('index.html')">
+                <p class="index">Home</p>
+            </div>
+            <div class="top_nav_services current"  onclick="reLoad()">
+                <p class="index">Services</p>
+            </div>
+            <div class="top_nav_about" onclick="launch('about.html')">
+                <p class="index">About</p>
+            </div>
+
+        </div>
+
+        <div class="body">
+            <div class="body_nav">
+                <li style="list-style-type: none;" class="li"><br>SERVICES</li>
+                <ul id="options">
+                    <li onclick="option(0, 0, '+')"><br>Matrix Addition</li>
+                    <li onclick="option(1, 0, '-')"><br>Matrix Subtraction</li>
+                    <li onclick="option(2, 0, '*')"><br>Matrix Multiplication</li>
+                    <li onclick="option(3, 1, 'Transpose')"><br>Matrix Transpose</li>
+                    <li onclick="option(4, 1, 'Cofactors')"><br>Matrix of Cofactors</li>
+                    <li onclick="option(5, 1, 'Adjoint')"><br>Adjoint of a Matrix</li>
+                    <li onclick="option(6, 1, 'Inverse')"><br>Inverse of a Matrix</li>
+                </ul>
+            </div>
+            <div class="body_main">
+                <div class="create_matrix">
+                    <h5>Create an element</h5>
+                    <div class="request">
+                        <div>
+                            <span>#rows</span>
+                            <input id="create-row" type="number" value="3" oninput="matrix_structure(1)">
+                        </div>
+                        <div>
+                            <span>#cols</span>
+                            <input id="create-column" type="number" value="3" oninput="matrix_structure(2)">
+                        </div>
+                    </div>
+                    <div class="prototype_matrix">
+                        <input type="number" class="input" value="5">
+                        <input type="number" class="input" value="5">
+                        <input type="number" class="input" value="5">
+                        <input type="number" class="input" value="5">
+                        <input type="number" class="input" value="5">
+                        <input type="number" class="input" value="5">
+                        <input type="number" class="input" value="5">
+                        <input type="number" class="input" value="5">
+                        <input type="number" class="input" value="5">
+                    </div>
+                    <div class="submit">
+                        <button class="btn" name="clear_matrix"style='background: orange' onclick="createMatrix(false)">Remove</button>
+                        <button class="btn" onclick="createMatrix(true)">Create</button>
+                    </div>
+                </div>
+
+                <div class="board">
+                    <span class="span">BOARD</span>
+                    <div class="question">
+                        <div class="operation">
+                            <ul class="matrix" id="solve_1">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li class="field_box" onclick="linkMatrix(0)"></li>
+                            </ul>
+                            <br>
+                           <ul>
+                                <li class="sign"></li>
+                            </ul>
+                            <ul class="matrix" id="solve_2">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li class="field_box" onclick="linkMatrix(1)"></li>
+                            </ul>
+                       </div>
+
+                        <div class="operation">
+                            <ul>
+                                <li class="operate"></li>
+                            </ul>
+                            <ul style="margin-left: 75px;" class="matrix" id="solve_3">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li class="field_box" onclick="linkMatrix(2)"></li>
+                            </ul>
+                        </div>
+ 
+                    </div>
+                    <p class="equal_sign">=</p>
+                    <div class="solution">
+                        
+                        <ul style="margin: auto; transform: translateY(20px);" class="matrix" id="result">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="field_box_result" onclick="addStyle(0)"></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="container">
+                        
+                        <ul class="matrix holder" id="matrix_1">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(0)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_2">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                           <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(1)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_3">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                           <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(2)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_4">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(3)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_5">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(4)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_6">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(5)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_7">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(6)"></li>
+                        </ul>
+                        <ul class="matrix holder" id="matrix_8">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li class="checkbox" onclick="addStyle(7)"></li>
+                        </ul>
+                    </div>
+            </div>
+
+        </div>
+
+    </body>
+    <script src="matrix_module.js"></script>
+    <script src="code.js" defer></script>
+</html>
