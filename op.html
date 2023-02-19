@@ -5,24 +5,21 @@
         <meta name="viewprot" content="width=device-width, initial-scale=1.0">
         <title>Solve Matrix Equations Easily</title>
         <link rel="icon" href="">
-        <link rel="stylesheet" href="style_1.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="top_nav">
-            <div class="profile">
-                <span>PROFILE</span>
-            </div>
-            
-            <div class="top_nav_home" onclick="launch('index.html')">
-                <p class="index">Home</p>
-            </div>
-            <div class="top_nav_services current"  onclick="reLoad()">
-                <p class="index">Services</p>
-            </div>
-            <div class="top_nav_about" onclick="launch('about.html')">
-                <p class="index">About</p>
-            </div>
-
+            <ul class="topUl">
+                <li>
+                    <span>Home</span>
+                </li>
+                <li class='current' onclick="location.reload()">
+                    <span>Services</span>
+                </li>
+                <li>
+                    <span>PROFILE</span>
+                </li>
+            </ul>       
         </div>
 
         <div class="body">
@@ -119,6 +116,12 @@
         </div>
 
     </body>
+    <script>
+        let homeLink = document.querySelector('.topUl').firstElementChild
+        homeLink.addEventListener('click',() => {
+            console.log(window.open('index.html', '_self'));
+        });
+    </script>
     <script src="matrix_module.js"></script>
     <script src="code.js" defer></script>
 </html>
