@@ -21,6 +21,7 @@
         }
         .top-div
         {
+
             width:40%;
             height: 170px;
             margin-left: 60%;
@@ -95,10 +96,23 @@
             border-radius: 0 50% 50% 0;
             background: orangered;
         }
+        .warn{
+            position: absolute;
+            top: -43px;
+            left: 40vw;
+            width: 270px;
+            height:32px;
+            padding-top: 10px;
+            background: orangered;
+            text-align: center;
+            justify-content: center;
+            color: white;
+            transition: top .3s ease-out;
+        }
         </style>
     </head>
     <body>
-        
+        <div class="warn">Sorry this item is not available yet!</div>
         <div class="top-div">
             <ul class="list">
                 <li>Home</li>
@@ -117,8 +131,17 @@
     <script>
 
         let btn = document.querySelector(".btn");
+        let nav = document.querySelector('.list');
+
         btn.addEventListener('click', () => {
             window.open('op.html', '_self');
+        })
+        nav.addEventListener('click', () => {
+            let note = document.querySelector('.warn');
+            note.style.top = '50px';
+            setTimeout(() =>{
+                note.style.top= '-43px';
+            }, 1000);
         })
     </script>
 </html>

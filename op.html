@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div class="warn">Sorry this item is not available yet!</div>
         <div class="top_nav">
             <ul class="topUl">
                 <li>
@@ -16,8 +17,8 @@
                 <li class='current' onclick="location.reload()">
                     <span>Services</span>
                 </li>
-                <li>
-                    <span>PROFILE</span>
+                <li class="profile">
+                    <span>Profile</span>
                 </li>
             </ul>       
         </div>
@@ -118,9 +119,18 @@
     </body>
     <script>
         let homeLink = document.querySelector('.topUl').firstElementChild
+        let pro = document.querySelector('.profile');
+
         homeLink.addEventListener('click',() => {
             console.log(window.open('index.html', '_self'));
         });
+        pro.addEventListener('click', () => {
+            let note = document.querySelector('.warn');
+            note.style.top = '50px';
+            setTimeout(() =>{
+                note.style.top= '-43px';
+            }, 1000);
+        })
     </script>
     <script src="matrix_module.js"></script>
     <script src="code.js" defer></script>

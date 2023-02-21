@@ -9,6 +9,25 @@ body
     font-family: Segoe UI Emoji;
     filter: brightness(100%)
 }
+
+
+
+.warn{
+    position: absolute;
+    top: -43px;
+    left: 40vw;
+    width: 270px;
+    height:32px;
+    padding-top: 10px;
+    background: orangered;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    transition: top .3s ease-out;
+}
+
+
+
 .top_nav
 {
     height: 120px;
