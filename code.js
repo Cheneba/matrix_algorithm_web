@@ -176,48 +176,11 @@ function linkMatrix(item){
         fieldMatrix.children[counter].textContent = matrixUl.children[counter].textContent
         counter++     
     }
-    while(counter<=9)
-    execute()
+    while(counter<=9);
+    execute();
 }
 
 
 
+option(0, 0, '+');
 
-
-
-
-
-
-
-
-
-
-
-option(0, 0, '+')
-
-
-
-function launch(link){
-    window.open(link, '_self')
-}
-
-function reLoad(){
-    location.reload()
-}
-
-function change(code){
-    element1 = document.getElementsByClassName('signup');
-    element2 = document.getElementsByClassName('login');
-    if(code=='r') {
-        element2[0].style.display = 'none'
-        element1[0].style.display = 'block';
-        document.getElementById('reg').style.background = 'orange'
-        document.getElementById('log').style.background = 'transparent'
-    }
-    else if(code=='l'){
-        element1[0].style.display = 'none'
-        element2[0].style.display = 'block'
-        document.getElementById('log').style.background = 'orange'
-        document.getElementById('reg').style.background = 'transparent'
-    }
-}
