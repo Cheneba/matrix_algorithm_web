@@ -1,15 +1,114 @@
 
 
+if(document.readyState == 'loading') {
+    document.addEventListener('DOMContentLoaded', ready)
+} else {
+    ready()
+}
 
-let matrixUl
-let matrix1 = document.getElementsByClassName('field_box')[0].parentElement
-let matrix2 = document.getElementsByClassName('field_box')[1].parentElement
-let matrix3 = document.getElementsByClassName('field_box')[2].parentElement
-let matrixCounter = -1
-let optChange = false
-let chosenOption = 0
+var chosenOption
+var chosenMatrix
+var matrix1 = document.getElementsByClassName('field_box')[0].parentElement
+var matrix2 = document.getElementsByClassName('field_box')[1].parentElement
+var matrix3 = document.getElementsByClassName('field_box')[2].parentElement
 
-function execute(){
+function ready() {
+    var createMatrixButton = document.getElementsByClassName('create-matrix')[0]
+    createMatrixButton.addEventListener('click', createMatrix)
+
+    var removeMatrixButton = document.getElementsByClassName('remove-matrix')[0]
+    removeMatrixButton.addEventListener('click', () => {
+        var container = document.getElementsByClassName('container')[0]
+        container.removeChild(container.lastChild)
+    })
+
+    var matrixOptions = document.getElementsByClassName('option')
+    for(i=0; i<matrixOptions.length; i++) {
+        matrixOptions[i].addEventListener('click', optionChange)
+    }
+
+    var boardMatrixButtons = document.getElementsByClassName('field_box')
+    for(i=0; i<boardMatrixButtons.length; i++) {
+        boardMatrixButtons[i].addEventListener('click', (event) => {
+            targetMatrix = event.target.parentElement
+            for(i=0; i<9; i++) {
+                targetMatrix.children[i].innerText = chosenMatrix.children[i].innerText
+            }
+            solveQuestion()
+        })
+    } 
+    
+}
+
+function createMatrix() {
+    var container = document.getElementsByClassName('container')[0]
+    var matrixEntries = document.getElementsByClassName('create-entry')
+    var newUl = document.createElement('ul')
+
+    for(let i=0; i<matrixEntries.length; i++) {
+        let newLi = document.createElement('li')
+        newLi.innerText = matrixEntries[i].value
+        newUl.append(newLi)
+    }
+    newUl.innerHTML += "<li class='checkbox'></li>"
+    newUl.classList.add('matrix')
+    container.append(newUl)
+    let lastElement = newUl.lastElementChild
+    lastElement.addEventListener('click', colorChange)
+    console.log(window.outerHeight)
+}
+
+function colorChange(event) {
+    checkbox= event.target
+    checkboxes = event.target.parentElement.parentElement
+
+    for(i=0; i<checkboxes.children.length; i++) {
+        checkboxes.children[i].lastElementChild.style.backgroundColor = 'black'
+        checkboxes.children[i].lastElementChild.style.borderColor = 'white'
+    }
+    checkbox.style.backgroundColor = 'white'
+    checkbox.style.borderColor = 'black'
+
+    chosenMatrix = event.target.parentElement
+}
+
+function optionChange(event) {
+    var targetOption = event.target
+    operation = String(targetOption.id)
+    options = targetOption.parentElement
+    board = document.getElementsByClassName('operation')
+
+    for(i=0; i<options.children.length; i++) {
+        options.children[i].style.backgroundColor = 'transparent'
+        options.children[i].style.width = '180px'
+    }
+    targetOption.style.backgroundColor = '#858181'
+    targetOption.style.width = '200px'
+    if(operation.length === 1){
+        board[0].style.display = 'flex'
+        board[1].style.display = 'none'
+        document.getElementsByClassName('sign')[0].innerText = `${operation}`
+    } else {
+        board[1].style.display = 'flex'
+        board[0].style.display = 'none'
+        document.getElementsByClassName('operate')[0].innerText = `${operation}`
+    }
+
+    let counter = 0
+    for( child of options.children){
+        if(child === event.target) {
+            chosenOption = counter
+        } else {
+            counter +=1
+        }   
+    }
+    solveQuestion()
+}
+
+
+
+
+function solveQuestion(){
     let numbers1 = []
     let numbers2 = []
     let numbers3 = []
@@ -61,126 +160,4 @@ function execute(){
         resultDiv.children[x].textContent = results[x]
     }
 }
-
-
-function createMatrix(){
-    container = document.getElementsByClassName('container')
-
-    if(matrixCounter>=7){
-        return false
-    }
-
-    matrixCounter+=1
-        // GETS VALUES FOR NEW MATRIX
-    input = document.getElementsByClassName("input")
-    row = document.getElementById('create-row').value
-    column = document.getElementById('create-column').value
-    numbers = []
-
-    for(let x=0; x<row*column; x++){
-        numbers.push(input[x].value)
-    }
-
-        //CREATES THE NEW MATRIX
-    newMatrix = document.createElement('ul')
-
-    newMatrix.classList.add('matrix')
-
-    for ( let number of numbers){
-        li = document.createElement('li');
-        li.textContent = number
-        newMatrix.appendChild(li)
-    }
-
-    li = document.createElement('li')
-    li.classList.add('checkbox')
-    li.setAttribute('onclick', `getMatrix(${matrixCounter})`)
-    newMatrix.appendChild(li)
-    
-    container[0].appendChild(newMatrix)
-         
-}
-
-
-function delMatrix(){
-    container = document.getElementsByClassName('container')
-    
-    if(matrixCounter<=-1){
-        return false
-    }
-
-    matrixCounter-=1
-
-    container = container[0]
-    container.removeChild(container.lastElementChild)
-}
-
-
-function option(index, code, value){
-    chosenOption = index
-    
-    optChange=true
-
-    // SELECTS THE ITEMS ON DOCUMENT
-    let board = document.getElementsByClassName("operation")
-    let options = document.getElementById("options")
-    let item1 = document.getElementsByClassName('sign')
-    let item2 = document.getElementsByClassName('operate')
-    
-    // APPLIES EFFECTS ON CLICKING
-    for(const child of options.children){
-        child.style.background = 'transparent'
-        child.style.width = '65%'
-    }
-    options.children[index].style.background = '#858181'
-    options.children[index].style.width = '72%'
-    
-    if(code===0){
-        board[0].style.display = 'flex'
-        board[1].style.display = 'none'
-        item1[0].innerText = value
-    }
-    else if(code===1){
-        board[1].style.display = 'flex'
-        board[0].style.display = 'none'
-        item2[0].innerText = value
-    }
-    execute()
-}
-
-
-function getMatrix(value){
-    set = document.querySelectorAll('.checkbox')
-    matrixUl = set[value].parentElement
-    
-    buttons = document.getElementsByClassName("checkbox")
-    buttons[value].style.background = 'white'
-    buttons[value].style.borderColor = 'black'
-    for(let child of buttons){
-        if(child!==buttons[value]){
-            child.style.background = 'black'
-            child.style.borderColor = 'white'
-            child.style.borderWidth = '1px'
-        }
-    //     else{
-    //         id = `M_0${value}`
-    //     }
-    }
-}
-
-
-function linkMatrix(item){
-    let fieldMatrix = document.getElementsByClassName('field_box')[item].parentElement
-    let counter=0
-    do{
-        fieldMatrix.children[counter].textContent = matrixUl.children[counter].textContent
-        counter++     
-    }
-    while(counter<=9);
-    execute();
-}
-
-
-
-option(0, 0, '+');
 

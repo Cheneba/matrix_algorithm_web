@@ -6,6 +6,8 @@
         <title>Solve Matrix Equations Easily</title>
         <link rel="icon" href="">
         <link rel="stylesheet" href="style.css">
+        <script src="code.js" async></script>
+
     </head>
     <body>
         <div class="warn">Sorry this item is not available yet!</div>
@@ -27,13 +29,13 @@
             <div class="body_nav">
                 <li style="list-style-type: none;" class="li"><br>SERVICES</li>
                 <ul id="options">
-                    <li onclick="option(0, 0, '+')"><br>Matrix Addition</li>
-                    <li onclick="option(1, 0, '-')"><br>Matrix Subtraction</li>
-                    <li onclick="option(2, 0, '*')"><br>Matrix Multiplication</li>
-                    <li onclick="option(3, 1, 'Transpose')"><br>Matrix Transpose</li>
-                    <li onclick="option(4, 1, 'Cofactors')"><br>Matrix of Cofactors</li>
-                    <li onclick="option(5, 1, 'Adjoint')"><br>Adjoint of a Matrix</li>
-                    <li onclick="option(6, 1, 'Inverse')"><br>Inverse of a Matrix</li>
+                    <li class='option' id="+"><br>Matrix Addition</li>
+                    <li class='option' id="-"><br>Matrix Subtraction</li>
+                    <li class='option' id="*"><br>Matrix Multiplication</li>
+                    <li class='option' id="Transpose"><br>Matrix Transpose</li>
+                    <li class='option' id="Cofactor"><br>Matrix of Cofactors</li>
+                    <li class='option' id="Adjoint"><br>Adjoint of a Matrix</li>
+                    <li class='option' id="Inverse"><br>Inverse of a Matrix</li>
                 </ul>
             </div>
             <div class="body_main">
@@ -50,19 +52,19 @@
                         </div>
                     </div>
                     <div class="prototype_matrix">
-                        <input type="number" class="input" value="5">
-                        <input type="number" class="input" value="5">
-                        <input type="number" class="input" value="5">
-                        <input type="number" class="input" value="5">
-                        <input type="number" class="input" value="5">
-                        <input type="number" class="input" value="5">
-                        <input type="number" class="input" value="5">
-                        <input type="number" class="input" value="5">
-                        <input type="number" class="input" value="5">
+                        <input type="number" class="create-entry" value="7">
+                        <input type="number" class="create-entry" value="7">
+                        <input type="number" class="create-entry" value="7">
+                        <input type="number" class="create-entry" value="7">
+                        <input type="number" class="create-entry" value="7">
+                        <input type="number" class="create-entry" value="7">
+                        <input type="number" class="create-entry" value="7">
+                        <input type="number" class="create-entry" value="7">
+                        <input type="number" class="create-entry" value="7">
                     </div>
                     <div class="submit">
-                        <button class="btn" name="clear_matrix"style='background: orange' onclick="delMatrix()">Remove</button>
-                        <button class="btn" onclick="createMatrix()">Create</button>
+                        <button style='background: orange' class="btn remove-matrix">Remove</button>
+                        <button class="btn create-matrix" >Create</button>
                     </div>
                 </div>
 
@@ -70,7 +72,7 @@
                     <span class="span">BOARD</span>
                     <div class="question">
                         <div class="operation">
-                            <ul class="matrix" id="solve_1">
+                            <ul class="matrix">
                                 <li></li>
                                 <li></li>
                                 <li></li>
@@ -80,14 +82,23 @@
                                 <li></li>
                                 <li></li>
                                 <li></li>
-                                <li class="field_box" onclick="linkMatrix(0)"></li>
+                                <li class="field_box"></li>
                             </ul>
                             <br>
                            <ul>
                                 <li class="sign"></li>
                             </ul>
-                            <ul class="matrix" id="solve_2">
-                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li class="field_box" onclick="linkMatrix(1)"></li>
+                            <ul class="matrix">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li class="field_box"></li>
                             </ul>
                        </div>
 
@@ -95,8 +106,8 @@
                             <ul>
                                 <li class="operate"></li>
                             </ul>
-                            <ul style="margin-left: 75px;" class="matrix" id="solve_3">
-                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li class="field_box" onclick="linkMatrix(2)"></li>
+                            <ul style="margin-left: 75px;" class="matrix">
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li class="field_box"></li>
                             </ul>
                         </div>
  
@@ -105,12 +116,25 @@
                     <div class="solution">
                         
                         <ul style="margin: auto; transform: translateY(20px);" class="matrix" id="result">
-                            <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li class="field_box_result" onclick=""></li>
+                            <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li class="field_box_result"></li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="container"></div>
+                <div class="container">
+                    <!-- <ul class="matrix">
+                        <li>3</li>
+                        <li>3</li>
+                        <li>3</li>
+                        <li>3</li>
+                        <li>3</li>
+                        <li>3</li>
+                        <li>3</li>
+                        <li>3</li>
+                        <li>3</li>
+                        <li class="checkbox"></li>
+                    </ul> -->
+                </div>
 
             </div>
 
@@ -133,5 +157,4 @@
         })
     </script>
     <script src="matrix_module.js"></script>
-    <script src="code.js" defer></script>
 </html>

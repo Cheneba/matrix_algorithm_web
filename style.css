@@ -27,7 +27,6 @@ body
 }
 
 
-
 .top_nav
 {
     height: 120px;
@@ -146,7 +145,7 @@ body
 .body_nav>ul>li:hover
 {
     width: 70%;
-    background-color: rgb(120 116 116);
+    background-color: #787474;
 }
 
 .body_nav .li {
@@ -374,7 +373,7 @@ body
     position: relative;
     top: 50%;
     left: 0;
-    width: 20px;
+    width: 20px; 
     height: 20px;
     font-size: 1em;
     font-weight: 600;
