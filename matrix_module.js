@@ -101,9 +101,9 @@ class Matrix{
     moc(){
         let newMatrix=[], xItem=[]
         if(this.isSquare()){
-            for(let x=0;x<this.row;x++){
-                for(let y=0;y<this.column;y++){
-                    xItem[y] = this.coFactor(x, y)
+            for(let x=0, z=0;x<this.row;x++){
+                for(let y=0;y<this.column;y++, z++){
+                    xItem[y] = this.coFactor(x, y)*Math.pow(-1, z)
                 }
                 newMatrix.push(xItem)
                 xItem=[]
