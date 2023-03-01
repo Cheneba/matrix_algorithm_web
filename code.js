@@ -26,6 +26,7 @@ function ready() {
     for(i=0; i<matrixOptions.length; i++) {
         matrixOptions[i].addEventListener('click', optionChange)
     }
+    matrixOptions.
 
     var boardMatrixButtons = document.getElementsByClassName('field_box')
     for(i=0; i<boardMatrixButtons.length; i++) {
@@ -55,7 +56,6 @@ function createMatrix() {
     container.append(newUl)
     let lastElement = newUl.lastElementChild
     lastElement.addEventListener('click', colorChange)
-    console.log(window.outerHeight)
 }
 
 function colorChange(event) {
@@ -123,7 +123,7 @@ function solveQuestion(){
     let matrixTwo= new Matrix(numbers2, 3, 3)
     let matrixThree = new Matrix(numbers3, 3, 3)
     
-    let result = new Matrix()
+    let result = new Matrix(['', '', '', '', '', '', '', '', ''],3,3)
     switch(chosenOption){
         case 0:{
             result = matrixOne.addMatrix(matrixTwo)
@@ -134,7 +134,7 @@ function solveQuestion(){
             break
         }
         case 2:{
-            // result = matrixOne.mulMatrix(matrixTwo)
+            result = matrixOne.mulMatrix(matrixTwo)
             break
         }
         case 3:{
@@ -151,6 +151,7 @@ function solveQuestion(){
         }
         case 6:{
             result = matrixThree.inverse()
+            console.log('The Determinant is:', matrixThree.determinant())
             break
         }
     }

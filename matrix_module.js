@@ -91,7 +91,7 @@ class Matrix{
         let D=0
         if(this.isSquare() && this.row!==0){
             for(let y=0;y<this.column;y++){
-                D += this.coFactor(0, y)
+                D += this.coFactor(0, y)*Math.pow(-1, y)
             }
         }
         return D
@@ -122,17 +122,19 @@ class Matrix{
     }
     inverse(){
         if(this.isSquare && this.isSingular){
-            let Matrix = this.adjoint(), deter = this.determinant()
-            let inverse=[], xItem = []
-            let newMatrix = Matrix.value
+            let Adjoint = this.adjoint()
+            let D = this.determinant()
+            let Inverse=[], xItem = []
+            Adjoint.update()
+            let matrix = Adjoint.value
             for(let x=0;x<this.row;x++){
                 for(let y=0;y<this.column;y++){
-                    xItem[y] = newMatrix[x][y]/deter
+                    xItem[y] = Math.floor(matrix[x][y]*100/D) / 100
                 }
-                inverse.push(xItem)
+                Inverse.push(xItem)
                 xItem = []
             }
-            return new Matrix(this.update(inverse, 0), this.row,  this.column)
+            return new Matrix(this.update(Inverse, 0), this.row,  this.column)
         }
     }
     addMatrix(sample){ 
@@ -143,11 +145,9 @@ class Matrix{
                 for(let y=0;y<this.column;y++){
                     xItem[y] = Number(this.value[x][y])+Number(sample.value[x][y])
                 }
-                // console.log(xItem)
                 newMatrix.push(xItem)
                 xItem = []
             }
-            // console.log(newMatrix)
             return new Matrix(this.update(newMatrix, 0), this.row, this.column)
         }
         else NaN
@@ -160,22 +160,33 @@ class Matrix{
                 for(let y=0;y<this.column;y++){
                     xItem[y] = Number(this.value[x][y])-Number(sample.value[x][y])
                 }
-                // console.log(xItem)
                 newMatrix.push(xItem)
                 xItem = []
             }
-            // console.log(newMatrix)
             return new Matrix(this.update(newMatrix, 0), this.row, this.column)
         }
     }
     mulMatrix(sample){
-        if (this.column === sample.row){
+        if (this.isSquare() && sample.isSquare()){
+            let newMatrix = []
+            let xItem = []
+            let value
+            for(let i=0; i<this.row; i++) {
+                for(let j=0; j<sample.column; j++) {
+                    value = 0
+                    for(let x=0; x<this.column; x++) {
+                        value += this.value[i][x]*sample.value[x][j]
+                    }
+                    xItem.push(value)
+                }
+                newMatrix.push(xItem)
+                xItem = []
+            }
 
+            return new Matrix(this.update(newMatrix, 0), this.row, this.column)
         }
     }
 
     
-}
-// let test = new Matrix([1, 6, 3, 2, -1, -5, 2, 3, 3], 3, 3)
-// let test_2 = test.moc()
+} 
 
