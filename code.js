@@ -26,7 +26,6 @@ function ready() {
     for(i=0; i<matrixOptions.length; i++) {
         matrixOptions[i].addEventListener('click', optionChange)
     }
-    matrixOptions.
 
     var boardMatrixButtons = document.getElementsByClassName('field_box')
     for(i=0; i<boardMatrixButtons.length; i++) {
